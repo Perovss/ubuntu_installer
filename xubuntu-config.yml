@@ -1,0 +1,17 @@
+---
+  - name: Install Xubuntu
+    hosts: all
+    tasks:
+      - name: Upload .tar.gz file containing binaries from local storage
+        copy:
+          src: "config.tar.gz"
+          dest: "/tmp/config.tar.gz"
+        register: download_util_binaries
+        until: download_util_binaries is succeeded
+      - name: Extract java in the installation directory
+        unarchive:
+          copy: false
+          src: "/tmp/config.tar.gz"
+          dest: "~/.config"
+          extra_opts: [--strip-components=1]  
+

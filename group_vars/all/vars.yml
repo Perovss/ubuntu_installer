@@ -1,0 +1,4 @@
+---
+  java_jdk_version: "13.0.2"
+  java_oracle_jdk_package: openjdk-{{java_jdk_version}}_linux-x64_bin.tar.gz
+  slack: slack-desktop-4.12.2-amd64.deb

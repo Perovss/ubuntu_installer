@@ -1,0 +1,74 @@
+[02/17/21, 21:43:26:508] info: 
+╔═══════════════════════════════════════════════════════╗
+║      Slack 4.12.2, linux 5.4.0-65-generic on x64      ║
+╚═══════════════════════════════════════════════════════╝ 
+[02/17/21, 21:43:26:509] info: Configured logger via 
+{
+  "enableConsoleTransport": true,
+  "identifierOverride": "webapp-console",
+  "shouldUseNewBackend": false,
+  "loggerInstanceCount": 3
+}
+[02/17/21, 21:43:26:509] info: Predefined values for process 
+{
+  "NODE_ENV": "production",
+  "platform": "linux",
+  "type": "browser",
+  "PACKAGE_MANIFEST.productName": "Slack",
+  "PACKAGE_MANIFEST.version": "4.12.2",
+  "PACKAGE_MANIFEST.commit": "cb3f3e6",
+  "PACKAGE_MANIFEST.branch": "HEAD",
+  "PACKAGE_MANIFEST.useSentry": true
+}
+[02/17/21, 21:43:26:509] info: Starting Sentry 
+[02/17/21, 21:43:26:509] warn: (electron) crashReporter.start is deprecated in the renderer process. Call it from the main process instead. 
+[02/17/21, 21:43:26:509] info: Creating desktop interface object 
+[02/17/21, 21:43:26:512] info: Exposing context bridge 
+[02/17/21, 21:43:26:512] warn: TELEMETRY You tried to get a team-specific telemeter but didn’t provide enough context and are getting the generic telemeter instead which is likely not what you want. 
+[02/17/21, 21:43:26:512] info: Store: UPSERT_WEB_CONTENTS {
+  "id": 1,
+  "state": "loaded"
+} 
+[02/17/21, 21:43:26:512] info: Store: RECORD_PERFORMANCE_TIMING {
+  "phase": 2,
+  "interval": 1563
+} 
+[02/17/21, 21:43:26:512] info: Store: MAIN_WINDOW_SHOWN  
+[02/17/21, 21:43:26:513] info: Store: UPDATE_SETTINGS {
+  "mainWindowSettings": {
+    "fullScreen": false,
+    "maximized": false,
+    "bounds": {
+      "x": 412,
+      "y": 115,
+      "width": 1024,
+      "height": 768
+    }
+  }
+} 
+[02/17/21, 21:43:26:513] info: Store: CLEAR_NOTIFICATIONS  
+[02/17/21, 21:43:26:517] info: Store: UPSERT_WEB_CONTENTS {
+  "id": 1,
+  "type": "app",
+  "history": "[REDACTED]"
+} 
+[02/17/21, 21:43:26:788] info: Network status check {
+  "elapsed_time_ms": 549,
+  "navigator_online": true,
+  "api_test": "online"
+} 
+[02/17/21, 21:43:26:790] info: Store: SET_NETWORK_STATUS online 
+[02/17/21, 21:43:27:384] info: Store: UPDATE_SETTINGS {
+  "mainWindowSettings": {
+    "fullScreen": false,
+    "maximized": false,
+    "bounds": {
+      "x": 413,
+      "y": 139,
+      "width": 1024,
+      "height": 768
+    }
+  }
+} 
+[02/17/21, 21:43:32:902] info: Store: QUIT_APP  
+[02/17/21, 21:43:32:903] info: Store: DOWNLOADS_CLEANED_UP  

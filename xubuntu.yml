@@ -1,0 +1,132 @@
+---
+  - name: Install Xubuntu
+    hosts: all
+    tasks:
+      - name: Run the equivalent of "apt-get update" as a separate step
+        become: yes
+        apt:
+          update_cache: yes
+      - name: install Java 13
+        become: yes
+        apt:
+          name: openjdk-13-jre
+      - name: Transfer Script Docker
+        become: yes
+        copy: src=docker.sh dest=/tmp mode=0777
+        tags: docker
+      - name: install docker
+        become: yes
+        command: sh /tmp/docker.sh
+        tags: docker
+      - name: Install VScode
+        become: yes
+        command: snap install code --classic
+      - name: Install Postman
+        become: yes
+        command: snap install postman
+      - name: Upload .tar.gz file containing binaries from local storage
+        copy:
+          src: "{{ slack }}"
+          dest: "/tmp/{{ slack }}"
+        register: download_slack_binaries
+        until: download_slack_binaries is succeeded
+      - name: Install slack
+        become: yes
+        apt:
+          deb: "/tmp/{{ slack }}"
+      - name: Install intellij-idea-community
+        become: yes
+        command: snap install intellij-idea-community --classic
+      - name: Set tcp_keepalive_intvl in sysctl
+        become: yes
+        sysctl:
+          name: vm.swappiness
+          value: "0"
+          state: present
+          reload: yes
+      - name: Transfer Script DBeaver CE
+        become: yes
+        copy: src=DBeaver.sh dest=/tmp mode=0777
+      - name: install DBeaver CE
+        become: yes
+        command: sh /tmp/DBeaver.sh
+      - name: Transfer Script chrome
+        become: yes
+        copy: src=chrome.sh dest=/tmp mode=0777
+      - name: Transfer Script Maven
+        become: yes
+        copy: src=maven.sh dest=/tmp mode=0777
+      - name: install Maven
+        become: yes
+        apt:
+          name: maven
+      - name: install chrome
+        become: yes
+        command: sh /tmp/chrome.sh 
+      - name: Upload .tar.gz file containing binaries from local storage
+        copy:
+          src: "pkg_scripts.tar.gz"
+          dest: "/tmp/pkg_scripts.tar.gz"
+        register: download_util_binaries
+        until: download_util_binaries is succeeded
+      - name: Ensure installation dir exists
+        become: true
+        file:
+          state: directory
+          path: "/tmp/pkg_scripts"
+      - name: Extract java in the installation directory
+        become: true
+        unarchive:
+          copy: false
+          src: "/tmp/pkg_scripts.tar.gz"
+          dest: "/tmp/pkg_scripts"
+          extra_opts: [--strip-components=1]
+      - name: Install vim
+        become: true
+        apt:
+          name: vim
+          state: present
+      - name: Install htop
+        become: true
+        apt:
+          name: htop
+          state: present
+      - name: Install aptitude
+        become: true
+        apt:
+          name: aptitude
+          state: present
+      - name: Install gnome-disk-utility
+        become: true
+        apt:
+          name: gnome-disk-utility
+          state: present
+      - name: Install fail2ban
+        become: true
+        apt:
+          name: fail2ban
+          state: present
+      - name: network-manager-openvpn
+        become: true
+        apt:
+          name: network-manager-openvpn
+          state: present
+      - name:  network-manager-openvpn-gnome
+        become: true
+        apt:
+          name: network-manager-openvpn-gnome
+          state: present       
+      - name: Install gparted
+        become: true
+        apt:
+          name: gparted
+          state: present
+      - name: сreate directories
+        file: path=~/.bashrc.d state=directory
+      - name: Upload bashrc file  from local storage
+        copy:
+          src: "my.bashrc"
+          dest: "~/.bashrc.d/my.bashrc"
+        register: download_bashrc
+        until: download_bashrc is succeeded
+

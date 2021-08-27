@@ -1,0 +1,5 @@
+---
+  - name: Install Xubuntu
+    hosts: all
+    roles: 
+      - ansible-soapui-master
